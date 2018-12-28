@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
 
 def file_reader(soccer_file):
-    with open(soccerFile, newline = '') as file:
+    with open(soccer_file, newline = '') as file:
         art_reader = csv.DictReader(file, delimeter = ",")
         rows = list(art_reader)
         for row in rows:
