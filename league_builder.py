@@ -2,7 +2,7 @@ import csv
 soccer_csv = "soccer_players.csv"
 
 if __name__ == "__main__":
-    pass
+    file_reader(soccer_csv)
 
 
 def file_reader(soccer_file):
@@ -12,4 +12,3 @@ def file_reader(soccer_file):
         for row in rows:
             print(row)
 
-file_reader(soccer_csv)
