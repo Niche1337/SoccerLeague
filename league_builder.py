@@ -17,6 +17,11 @@ def team_creator(players):
 
     print(players[0]['Name'])
 
+    sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
+
+    
+    print(sharks[0][0]["Name"])
+
 
 
 def team_file_creator(team1, team2, team3):
