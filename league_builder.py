@@ -1,19 +1,18 @@
 import csv
-soccer_csv = "soccer_players.csv"
-sharks = []
-dragons = []
-raptors = []
+SOCCER_CSV = "soccer_players.csv"
+
 
 def file_reader(soccer_file):
     rows = []
     with open(soccer_file, newline = '') as file:
         art_reader = csv.DictReader(file)
-        rows = list(art_reader)
-        #
+        rows = list(art_reader)     
     return rows
 
 def team_creator(players):
-
+    sharks = []
+    dragons = []
+    raptors = []
     #sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
     for player in players:
         if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
@@ -28,24 +27,33 @@ def team_creator(players):
             dragons.append(player)
         elif player["Soccer Experience"] == "NO" and len(raptors) != 6:
             raptors.append(player)
-        
-
-
-
-    print(sharks)
-    print(dragons)
-    print(raptors)
-
+    
+    return sharks, dragons, raptors
 
 
 def team_file_creator(team1, team2, team3):
-    with open("teams.txt", "a") as file:
-        file.writelines(("This is a test"))
+    with open("teams.txt", "w") as file:
+        team_names = ["Sharks", "Dragons", "Raptors"]
+        for name in team_names:
+            file.write(("{}\n".format(name)))
+            if name == "Sharks":
+                for players in team1:
+                    file.write("{}, {}, {}\n".format(players["Name"], players["Soccer Experience"], players["Guardian Name(s)"]))
+                file.write("-"*40 + "\n"*3)
+            elif name == "Dragons":
+                for players in team2:
+                    file.write("{}, {}, {}\n".format(players["Name"], players["Soccer Experience"], players["Guardian Name(s)"]))
+                file.write("-"*40 + "\n"*3)
+            elif name == "Raptors":
+                for players in team3:
+                    file.write("{}, {}, {}\n".format(players["Name"], players["Soccer Experience"], players["Guardian Name(s)"]))
+                file.write("-"*40 + "\n"*3)
+            
+
 
 
 if __name__ == "__main__":
-    players = file_reader(soccer_csv)
-    team_creator(players)
-
-##TODO write up team creator func
+    players = file_reader(SOCCER_CSV)
+    sharks, dragons, raptors = team_creator(players)
+    team_file_creator(sharks, dragons, raptors)
 ## TODO write up team file writer 
