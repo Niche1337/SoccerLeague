@@ -1,6 +1,8 @@
 import csv
 soccer_csv = "soccer_players.csv"
-
+sharks = []
+dragons = []
+raptors = []
 
 def file_reader(soccer_file):
     rows = []
@@ -11,16 +13,28 @@ def file_reader(soccer_file):
     return rows
 
 def team_creator(players):
-    sharks = []
-    dragons = []
-    raptors = []
 
-    print(players[0]['Name'])
+    #sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
+    for player in players:
+        if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
+            sharks.append(player)
+        elif player["Soccer Experience"] == "YES" and len(dragons) < 4:
+            dragons.append(player)
+        elif player["Soccer Experience"] == "YES" and len(raptors) < 4:
+            raptors.append(player)        
+        elif player["Soccer Experience"] == "NO" and len(sharks) != 6:     
+            sharks.append(player)
+        elif player["Soccer Experience"] == "NO" and len(dragons) != 6:
+            dragons.append(player)
+        elif player["Soccer Experience"] == "NO" and len(raptors) != 6:
+            raptors.append(player)
+        
 
-    sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
 
-    
-    print(sharks[0][0]["Name"])
+
+    print(sharks)
+    print(dragons)
+    print(raptors)
 
 
 
