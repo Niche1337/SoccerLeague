@@ -42,8 +42,6 @@ def team_creator(players):
 
 def team_file_creator(team1, team2, team3):
 
-
-
     with open("teams.txt", "w") as file:
         team_names = ["Sharks", "Dragons", "Raptors"]
         for name in team_names:
