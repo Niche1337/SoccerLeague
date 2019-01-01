@@ -3,11 +3,11 @@ SOCCER_CSV = "soccer_players.csv"
 
 
 def file_reader(soccer_file):
-    rows = []
+    players = []
     with open(soccer_file, newline = '') as file:
         art_reader = csv.DictReader(file)
-        rows = list(art_reader)     
-    return rows
+        players = list(art_reader)     
+    return players
 
 def team_creator(players):
     sharks = []
@@ -41,6 +41,9 @@ def team_creator(players):
     return sharks, dragons, raptors
 
 def team_file_creator(team1, team2, team3):
+
+
+
     with open("teams.txt", "w") as file:
         team_names = ["Sharks", "Dragons", "Raptors"]
         for name in team_names:
@@ -57,8 +60,23 @@ def team_file_creator(team1, team2, team3):
                 for players in team3:
                     file.write("{}, {}, {}\n".format(players["Name"], players["Soccer Experience"], players["Guardian Name(s)"]))
                 file.write("-"*40 + "\n"*3)
-            
+
+def player_letter(soccer_file):
+    players = []
+    with open(soccer_file, newline = '') as file:
+        art_reader = csv.DictReader(file)
+        players = list(art_reader)
+    for player in players:        
+        with open("{}.txt".format(player["Name"]), "w") as file:
+            file.write("Hello World")
+        
+
+
+
+
 if __name__ == "__main__":
     players = file_reader(SOCCER_CSV)
     sharks, dragons, raptors = team_creator(players)
     team_file_creator(sharks, dragons, raptors)
+    player_letter(SOCCER_CSV)
+
