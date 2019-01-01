@@ -14,18 +14,34 @@ def team_creator(players):
     dragons = []
     raptors = []
     #sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
+    # for player in players:
+    #     if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
+    #         sharks.append(player)
+    #     elif player["Soccer Experience"] == "YES" and len(dragons) < 4:
+    #         dragons.append(player)
+    #     elif player["Soccer Experience"] == "YES" and len(raptors) < 4:
+    #         raptors.append(player)        
+    #     elif player["Soccer Experience"] == "NO" and len(sharks) != 6:     
+    #         sharks.append(player)
+    #     elif player["Soccer Experience"] == "NO" and len(dragons) != 6:
+    #         dragons.append(player)
+    #     elif player["Soccer Experience"] == "NO" and len(raptors) != 6:
+    #         raptors.append(player)
+
     for player in players:
         if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
             sharks.append(player)
         elif player["Soccer Experience"] == "YES" and len(dragons) < 4:
             dragons.append(player)
         elif player["Soccer Experience"] == "YES" and len(raptors) < 4:
-            raptors.append(player)        
-        elif player["Soccer Experience"] == "NO" and len(sharks) != 6:     
+            raptors.append(player)
+    
+    for player in players:
+        if player["Soccer Experience"] == "NO" and len(sharks) < 6:     
             sharks.append(player)
-        elif player["Soccer Experience"] == "NO" and len(dragons) != 6:
+        elif player["Soccer Experience"] == "NO" and len(dragons) < 6:
             dragons.append(player)
-        elif player["Soccer Experience"] == "NO" and len(raptors) != 6:
+        elif player["Soccer Experience"] == "NO" and len(raptors) < 6:
             raptors.append(player)
     
     return sharks, dragons, raptors
