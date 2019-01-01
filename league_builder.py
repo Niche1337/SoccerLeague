@@ -1,8 +1,12 @@
 import csv
 SOCCER_CSV = "soccer_players.csv"
 
+#Going for exceeds expectation
 
 def file_reader(soccer_file):
+    '''The file reader creates a list of ordered dictionaries, of all the  players in the soccer.csv file.
+    It takes a csv file as an argument
+    '''
     players = []
     with open(soccer_file, newline = '') as file:
         art_reader = csv.DictReader(file)
@@ -15,7 +19,10 @@ def team_creator(players):
     raptors = []
     exp_yes = []
     exp_no = []
-
+    '''The team creator function splits the players from the soccer.csv, 
+        into three evenly distrubted teams based on soccer experience
+        It takes a list containing the players, and return three even distributed lists
+    '''
     for player in players:
         if player["Soccer Experience"] == "YES":
             exp_yes.append(player)
@@ -41,7 +48,8 @@ def team_creator(players):
     return sharks, dragons, raptors
 
 def team_file_creator(team1, team2, team3):
-
+    '''Takes three teams, containing players, and creats a teams.txt file
+    '''
     with open("teams.txt", "w") as file:
         team_names = ["Sharks", "Dragons", "Raptors"]
         for name in team_names:
@@ -63,6 +71,9 @@ def team_file_creator(team1, team2, team3):
                 file.write("-"*40 + "\n"*3)
 
 def player_letter(soccer_file, team_name):
+    '''Takes the one of the teams list of players, and the name of the team.
+    return a welcoming text file
+    '''
     for player in soccer_file:        
         player_name = player["Name"].split()
         with open("{}_{}.txt".format(player_name[0], player_name[1]), "w") as file:        
