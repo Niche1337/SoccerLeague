@@ -13,39 +13,32 @@ def team_creator(players):
     sharks = []
     dragons = []
     raptors = []
-    #sharks.append([shark for shark in players if shark["Soccer Experience"] == "YES"] )
-    # for player in players:
-    #     if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
-    #         sharks.append(player)
-    #     elif player["Soccer Experience"] == "YES" and len(dragons) < 4:
-    #         dragons.append(player)
-    #     elif player["Soccer Experience"] == "YES" and len(raptors) < 4:
-    #         raptors.append(player)        
-    #     elif player["Soccer Experience"] == "NO" and len(sharks) != 6:     
-    #         sharks.append(player)
-    #     elif player["Soccer Experience"] == "NO" and len(dragons) != 6:
-    #         dragons.append(player)
-    #     elif player["Soccer Experience"] == "NO" and len(raptors) != 6:
-    #         raptors.append(player)
+    exp_yes = []
+    exp_no = []
 
     for player in players:
-        if player["Soccer Experience"] == "YES" and len(sharks) < 4:     
-            sharks.append(player)
-        elif player["Soccer Experience"] == "YES" and len(dragons) < 4:
-            dragons.append(player)
-        elif player["Soccer Experience"] == "YES" and len(raptors) < 4:
-            raptors.append(player)
+        if player["Soccer Experience"] == "YES":
+            exp_yes.append(player)
+        else:
+            exp_no.append(player)
     
-    for player in players:
-        if player["Soccer Experience"] == "NO" and len(sharks) < 6:     
+    for player in exp_yes:
+        if len(sharks) != 3:
             sharks.append(player)
-        elif player["Soccer Experience"] == "NO" and len(dragons) < 6:
+        elif len(dragons) != 3:
             dragons.append(player)
-        elif player["Soccer Experience"] == "NO" and len(raptors) < 6:
+        elif len(raptors) != 3:
             raptors.append(player)
-    
+
+    for player in exp_no:
+        if len(sharks) != 6:
+            sharks.append(player)
+        elif len(dragons) != 6:
+            dragons.append(player)
+        elif len(raptors) != 6:
+            raptors.append(player)
+
     return sharks, dragons, raptors
-
 
 def team_file_creator(team1, team2, team3):
     with open("teams.txt", "w") as file:
@@ -65,11 +58,7 @@ def team_file_creator(team1, team2, team3):
                     file.write("{}, {}, {}\n".format(players["Name"], players["Soccer Experience"], players["Guardian Name(s)"]))
                 file.write("-"*40 + "\n"*3)
             
-
-
-
 if __name__ == "__main__":
     players = file_reader(SOCCER_CSV)
     sharks, dragons, raptors = team_creator(players)
     team_file_creator(sharks, dragons, raptors)
-## TODO write up team file writer 
